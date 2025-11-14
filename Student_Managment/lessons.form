@@ -171,11 +171,13 @@
                       <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <Group type="103" groupAlignment="3" attributes="0">
+              <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="jButton5" alignment="0" min="-2" pref="44" max="-2" attributes="0"/>
                   <Component id="updateButton2" alignment="1" min="-2" pref="44" max="-2" attributes="0"/>
-                  <Component id="updateButton1" alignment="3" min="-2" pref="44" max="-2" attributes="0"/>
-                  <Component id="updateButton3" alignment="3" min="-2" pref="44" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="updateButton1" alignment="3" min="-2" pref="44" max="-2" attributes="0"/>
+                      <Component id="updateButton3" alignment="3" min="-2" pref="44" max="-2" attributes="0"/>
+                  </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
