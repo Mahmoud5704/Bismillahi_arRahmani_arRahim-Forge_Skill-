@@ -2,6 +2,8 @@ package Instructor_Management;
 
 import User_Account_Management.welcome;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 
 public class Managelessons extends javax.swing.JPanel {
@@ -25,7 +27,10 @@ public class Managelessons extends javax.swing.JPanel {
             frame.setVisible(true);
         }
     }
-
+       ///////////////////////////////////////////////////////////  
+      // 1- MAKE DELETE BUTTON TO DELETE FROM FILE
+      //2- LOAD IN TABELE FROM FILES AS NEEDED NOT ALL 
+  
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -40,7 +45,7 @@ public class Managelessons extends javax.swing.JPanel {
         jPanel1 = new javax.swing.JPanel();
         jLabel12 = new javax.swing.JLabel();
         EDIT_TABLE1 = new javax.swing.JScrollPane();
-        lessons1 = new javax.swing.JTable();
+        lessons = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
         jButton5 = new javax.swing.JButton();
         updateButton1 = new javax.swing.JButton();
@@ -121,26 +126,26 @@ public class Managelessons extends javax.swing.JPanel {
         jLabel12.setFont(new java.awt.Font("Stencil", 1, 36)); // NOI18N
         jLabel12.setText("lessons");
 
-        lessons1.setAutoCreateRowSorter(true);
-        lessons1.setBackground(new java.awt.Color(102, 102, 102));
-        lessons1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        lessons1.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
-        lessons1.setForeground(new java.awt.Color(255, 255, 255));
-        lessons1.setModel(new javax.swing.table.DefaultTableModel(
+        lessons.setAutoCreateRowSorter(true);
+        lessons.setBackground(new java.awt.Color(102, 102, 102));
+        lessons.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        lessons.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
+        lessons.setForeground(new java.awt.Color(255, 255, 255));
+        lessons.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {"COMP", "100", null},
-                {null, null, null},
-                {null, null, null}
+                {"first lesson"},
+                {null},
+                {null}
             },
             new String [] {
-                "title", "content", "optional resources"
+                "title"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false
+                false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -151,31 +156,31 @@ public class Managelessons extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
-        lessons1.setToolTipText("MMM");
-        lessons1.setFillsViewportHeight(true);
-        lessons1.setGridColor(new java.awt.Color(255, 255, 255));
-        lessons1.setShowGrid(true);
-        lessons1.addAncestorListener(new javax.swing.event.AncestorListener() {
+        lessons.setToolTipText("MMM");
+        lessons.setFillsViewportHeight(true);
+        lessons.setGridColor(new java.awt.Color(255, 255, 255));
+        lessons.setShowGrid(true);
+        lessons.addAncestorListener(new javax.swing.event.AncestorListener() {
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
-                lessons1AncestorAdded(evt);
+                lessonsAncestorAdded(evt);
             }
             public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
             }
             public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
             }
         });
-        lessons1.addMouseListener(new java.awt.event.MouseAdapter() {
+        lessons.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lessons1MouseClicked(evt);
+                lessonsMouseClicked(evt);
             }
         });
-        lessons1.addKeyListener(new java.awt.event.KeyAdapter() {
+        lessons.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                lessons1KeyPressed(evt);
+                lessonsKeyPressed(evt);
             }
         });
-        EDIT_TABLE1.setViewportView(lessons1);
-        lessons1.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
+        EDIT_TABLE1.setViewportView(lessons);
+        lessons.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
 
         jLabel2.setText("course_name");
 
@@ -300,17 +305,17 @@ public class Managelessons extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void lessons1AncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_lessons1AncestorAdded
+    private void lessonsAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_lessonsAncestorAdded
         // TODO add your handling code here:
-    }//GEN-LAST:event_lessons1AncestorAdded
+    }//GEN-LAST:event_lessonsAncestorAdded
 
-    private void lessons1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lessons1MouseClicked
+    private void lessonsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lessonsMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_lessons1MouseClicked
+    }//GEN-LAST:event_lessonsMouseClicked
 
-    private void lessons1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_lessons1KeyPressed
+    private void lessonsKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_lessonsKeyPressed
         // TODO add your handling code here:
-    }//GEN-LAST:event_lessons1KeyPressed
+    }//GEN-LAST:event_lessonsKeyPressed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
             new Manage_Courses().setVisible(true);
@@ -318,11 +323,27 @@ public class Managelessons extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void updateButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateButton1ActionPerformed
-        // TODO add your handling code here:
+        DefaultTableModel model=(DefaultTableModel) lessons.getModel();
+         int row =lessons.getSelectedRow();
+          if (row >=0) { 
+        int confirm = JOptionPane.showConfirmDialog(
+            this,
+            "Are you sure you want to delete this row?",
+            "Confirm Delete",
+            JOptionPane.YES_NO_OPTION
+        );
+        
+        if (confirm == JOptionPane.YES_OPTION) {
+            model.removeRow(row);
+            //add remove method (remove from database)
+        }
+          }
     }//GEN-LAST:event_updateButton1ActionPerformed
 
     private void updateButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateButton2ActionPerformed
-        // TODO add your handling code here:
+        int r = lessons.getSelectedRow();
+        String lessonsName = lessons.getValueAt(r, 0).toString();  
+        new LESSON(frame,true,lessonsName).setVisible(true);
     }//GEN-LAST:event_updateButton2ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
@@ -331,8 +352,7 @@ public class Managelessons extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void updateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateButtonActionPerformed
-        // TODO add your handling code here:
-
+                new LESSON(frame,true).setVisible(true);
     }//GEN-LAST:event_updateButtonActionPerformed
 
 
@@ -350,7 +370,7 @@ public class Managelessons extends javax.swing.JPanel {
     public javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JSeparator jSeparator1;
-    public javax.swing.JTable lessons1;
+    public javax.swing.JTable lessons;
     private javax.swing.JButton updateButton;
     private javax.swing.JButton updateButton1;
     private javax.swing.JButton updateButton2;
