@@ -24,7 +24,9 @@ public class Enrolled_courses extends javax.swing.JPanel {
             frame.setVisible(true);
         }
     }
-
+    ///////////////////////////////////////////////////////////  
+      //1- LOAD IN TABELE FROM FILES AS NEEDED NOT ALL (DONT FORGET REMINDER)
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {

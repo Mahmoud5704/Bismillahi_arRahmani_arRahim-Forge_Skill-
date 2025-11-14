@@ -27,7 +27,9 @@ public class Browse_Courses extends javax.swing.JPanel {
             frame.setVisible(true);
         }
     }
-
+      ///////////////////////////////////////////////////////////  
+      //1- LOAD IN TABELE FROM FILES AS NEEDED NOT ALL 
+      //2-handle enroll when push button
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
