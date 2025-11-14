@@ -1,5 +1,6 @@
 package User_Account_Management;
-
+import Student_Managment.Browse_Courses;
+import Student_Managment.Enrolled_courses;
 public class StudentDashboard extends javax.swing.JFrame {
 
     
@@ -152,7 +153,8 @@ public class StudentDashboard extends javax.swing.JFrame {
     }//GEN-LAST:event_formComponentAdded
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-          // TODO add your handling code here:
+        new Enrolled_courses().setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
@@ -161,7 +163,8 @@ public class StudentDashboard extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        // TODO add your handling code here:
+       new Browse_Courses().setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jButton7ActionPerformed
 
 
