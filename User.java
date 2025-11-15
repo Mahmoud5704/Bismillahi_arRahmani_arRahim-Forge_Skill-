@@ -39,27 +39,27 @@ public class User {
     }
 
     public String getPasswordHash() {
-        return password;
+        return passwordHash;
     }
     //************************************************************************//
     public void setUserId(int userId) {
-        if(validateId(userId));
+        if(validateId(userId))
                 this.userId = userId;
     }
 
     public void setUsername(String username) {
-        if(validateUsername(username));
+        if(validateUsername(username))
                 this.username = username;
     }
 
     public void setEmail(String email) {
-        if(validateEmail(email));
+        if(validateEmail(email))
                 this.email = email;
     }
 
     public void setPassword(String password) {
-       if(validatePassword(password));  
-                 this.password = sha256(password);  
+       if(validatePassword(password)) 
+                 this.passwordHash = sha256(password);  
     }
     //************************************************************************//
     private String sha256(String input) {

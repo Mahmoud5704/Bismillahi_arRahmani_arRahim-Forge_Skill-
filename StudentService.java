@@ -4,15 +4,14 @@
  */
 package sky.cloud;
 
-/**
- *
- * @author 20115
- */
+import java.util.List;
+import java.io.*;
+import java.util.*;
 public class StudentService 
 {
     private List <Student> studentlist;
     //************************************************************************//
-    public StudentService(List <Student> studentlist)
+    public StudentService(List<Student> studentlist)
     {
           this.studentlist = new ArrayList<>(studentlist);
     }
@@ -22,14 +21,30 @@ public class StudentService
         this.studentlist =  JSONDataBaseManager.readStudentsFromFile();
     }  
     //************************************************************************//
-    public int studentEnrollment(Student s,Course c)
+        public int studentEnrollment(Student s, Course c)
     {
-        if(s.getCourses().contains(c))
+       
+        if (s.getCourses().contains(c))
             return 0;
-        s.courses.add(c);
+
         
-        c.students.add(s);
+        List<Course> currentCourses = s.getCourses();
+        currentCourses.add(c);
+        s.setCourses(currentCourses);
+
         
+        List<Student> currentStudents = c.getStudents();
+        currentStudents.add(s);
+        c.setStudents(currentStudents);
+
+        
+        Map<Course, Map<Lesson, LessonStatus>> progress = s.getProgress();
+        if (!progress.containsKey(c))
+        {
+            progress.put(c, new HashMap<>());
+            s.setProgress(progress);
+        }
+
         JSONDataBaseManager.updateStudent(s);
         JSONDataBaseManager.updateCourses(c);
         return 1;
@@ -46,7 +61,9 @@ public class StudentService
    
     Map<Course, Map<Lesson, LessonStatus>> progress = s.getProgress();
 
-  
+    if (progress == null) 
+        return 0;
+    
     Map<Lesson, LessonStatus> lessonMap = progress.get(c);
 
     if (lessonMap == null || !lessonMap.containsKey(l)) {
@@ -55,7 +72,6 @@ public class StudentService
 
   
     lessonMap.put(l, LessonStatus.VIEWED);
-    
     s.setProgress(progress);
     
     JSONDataBaseManager.updateStudent(s);
