@@ -249,13 +249,13 @@
                 </Property>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                   <Table columnCount="2" rowCount="2">
+                    <Column editable="false" title="ID" type="java.lang.String">
+                      <Data value="123"/>
+                      <Data value="123"/>
+                    </Column>
                     <Column editable="false" title="TITLE" type="java.lang.String">
                       <Data value="math"/>
                       <Data value="logic"/>
-                    </Column>
-                    <Column editable="false" title="num_lessons" type="java.lang.String">
-                      <Data value="10"/>
-                      <Data value="9"/>
                     </Column>
                   </Table>
                 </Property>

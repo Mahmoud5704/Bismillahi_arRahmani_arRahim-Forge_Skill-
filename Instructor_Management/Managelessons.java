@@ -10,16 +10,15 @@ public class Managelessons extends javax.swing.JPanel {
 
     private JFrame frame;
 
-    public Managelessons(String name) {
+    public Managelessons() {
         initComponents();
-        jLabel2.setText(name);
 
     }
 
     @Override
     public void setVisible(boolean f) {
         if (f) {
-            frame = new JFrame("Search and Update Student");
+            frame = new JFrame();
             frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
             frame.getContentPane().add(this);
             frame.pack();
@@ -46,7 +45,6 @@ public class Managelessons extends javax.swing.JPanel {
         jLabel12 = new javax.swing.JLabel();
         EDIT_TABLE1 = new javax.swing.JScrollPane();
         lessons = new javax.swing.JTable();
-        jLabel2 = new javax.swing.JLabel();
         jButton5 = new javax.swing.JButton();
         updateButton1 = new javax.swing.JButton();
         updateButton2 = new javax.swing.JButton();
@@ -133,19 +131,17 @@ public class Managelessons extends javax.swing.JPanel {
         lessons.setForeground(new java.awt.Color(255, 255, 255));
         lessons.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {"first lesson"},
-                {null},
-                {null}
+                {"12345", "1ST LESSON"}
             },
             new String [] {
-                "title"
+                "ID", "Title "
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class
+                java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false
+                false, true
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -181,8 +177,6 @@ public class Managelessons extends javax.swing.JPanel {
         });
         EDIT_TABLE1.setViewportView(lessons);
         lessons.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
-
-        jLabel2.setText("course_name");
 
         jButton5.setBackground(new java.awt.Color(102, 102, 102));
         jButton5.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -240,13 +234,8 @@ public class Managelessons extends javax.swing.JPanel {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(273, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel12)
-                        .addGap(279, 279, 279))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addGap(324, 324, 324))))
+                .addComponent(jLabel12)
+                .addGap(279, 279, 279))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
@@ -271,9 +260,7 @@ public class Managelessons extends javax.swing.JPanel {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(11, 11, 11)
                 .addComponent(jLabel12)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(34, 34, 34)
                 .addComponent(EDIT_TABLE1, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -335,6 +322,7 @@ public class Managelessons extends javax.swing.JPanel {
         
         if (confirm == JOptionPane.YES_OPTION) {
             model.removeRow(row);
+            
             //add remove method (remove from database)
         }
           }
@@ -367,7 +355,6 @@ public class Managelessons extends javax.swing.JPanel {
     private javax.swing.JDialog jDialog5;
     private javax.swing.JDialog jDialog6;
     private javax.swing.JLabel jLabel12;
-    public javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JSeparator jSeparator1;
     public javax.swing.JTable lessons;

@@ -13,7 +13,7 @@ public class view_enrolled_students extends javax.swing.JPanel {
      @Override
     public void setVisible(boolean f) {
         if (f) {
-            frame = new JFrame("Search and Update Student");
+            frame = new JFrame();
             frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
             frame.getContentPane().add(this);
             frame.pack();
@@ -83,7 +83,7 @@ public class view_enrolled_students extends javax.swing.JPanel {
                 {"ahmed", "10000", "100"}
             },
             new String [] {
-                "name", "id", "progress"
+                "ID", "NAME", "PROGRESS"
             }
         ) {
             Class[] types = new Class [] {
