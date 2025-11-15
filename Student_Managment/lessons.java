@@ -2,23 +2,20 @@ package Student_Managment;
 
 import User_Account_Management.welcome;
 import javax.swing.JFrame;
-import javax.swing.JOptionPane;
-
 
 public class lessons extends javax.swing.JPanel {
 
     private JFrame frame;
 
-    public lessons(String name) {
+    public lessons() {
         initComponents();
-        jLabel1.setText(name);
 
     }
 
     @Override
     public void setVisible(boolean f) {
         if (f) {
-            frame = new JFrame("Search and Update Student");
+            frame = new JFrame();
             frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
             frame.getContentPane().add(this);
             frame.pack();
@@ -26,6 +23,7 @@ public class lessons extends javax.swing.JPanel {
             frame.setVisible(true);
         }
     }
+
     ///////////////////////////////////////////////////////////  
       //1- LOAD IN TABELE FROM FILES AS NEEDED 
     // 2- handle all button (description/content/optional resource) and add panels for them to view them
@@ -42,13 +40,10 @@ public class lessons extends javax.swing.JPanel {
         jDialog5 = new javax.swing.JDialog();
         jDialog6 = new javax.swing.JDialog();
         jButton5 = new javax.swing.JButton();
-        updateButton = new javax.swing.JButton();
         jLabel11 = new javax.swing.JLabel();
         EDIT_TABLE = new javax.swing.JScrollPane();
         lessons = new javax.swing.JTable();
-        jLabel1 = new javax.swing.JLabel();
         jButton6 = new javax.swing.JButton();
-        updateButton1 = new javax.swing.JButton();
         updateButton2 = new javax.swing.JButton();
         updateButton3 = new javax.swing.JButton();
 
@@ -130,16 +125,6 @@ public class lessons extends javax.swing.JPanel {
             }
         });
 
-        updateButton.setBackground(new java.awt.Color(102, 102, 102));
-        updateButton.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        updateButton.setForeground(new java.awt.Color(255, 255, 255));
-        updateButton.setText("mark as completed");
-        updateButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                updateButtonActionPerformed(evt);
-            }
-        });
-
         jLabel11.setFont(new java.awt.Font("Stencil", 1, 36)); // NOI18N
         jLabel11.setText("lessons");
 
@@ -150,19 +135,19 @@ public class lessons extends javax.swing.JPanel {
         lessons.setForeground(new java.awt.Color(255, 255, 255));
         lessons.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {"COMP", "non"},
-                {null, "non"},
-                {null, "non"}
+                {"10000", "COMP", "non"},
+                {"10000", "MATH", "non"},
+                {"30000", "PROG", "non"}
             },
             new String [] {
-                "title", "completed"
+                "ID", "title", "completed"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false
+                false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -197,10 +182,10 @@ public class lessons extends javax.swing.JPanel {
             }
         });
         EDIT_TABLE.setViewportView(lessons);
-        lessons.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
-
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel1.setText("course_name");
+        if (lessons.getColumnModel().getColumnCount() > 0) {
+            lessons.getColumnModel().getColumn(0).setPreferredWidth(100);
+            lessons.getColumnModel().getColumn(1).setResizable(false);
+        }
 
         jButton6.setBackground(new java.awt.Color(102, 102, 102));
         jButton6.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -209,16 +194,6 @@ public class lessons extends javax.swing.JPanel {
         jButton6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton6ActionPerformed(evt);
-            }
-        });
-
-        updateButton1.setBackground(new java.awt.Color(102, 102, 102));
-        updateButton1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        updateButton1.setForeground(new java.awt.Color(255, 255, 255));
-        updateButton1.setText("Description");
-        updateButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                updateButton1ActionPerformed(evt);
             }
         });
 
@@ -247,88 +222,46 @@ public class lessons extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                            .addComponent(updateButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGap(18, 18, 18)
-                            .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                            .addComponent(updateButton2)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(updateButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(updateButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(18, 18, 18)
-                            .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(EDIT_TABLE, javax.swing.GroupLayout.PREFERRED_SIZE, 548, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(200, 200, 200)
+                .addGap(183, 183, 183)
                 .addComponent(jLabel11)
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(237, 237, 237)
-                .addComponent(jLabel1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(12, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(updateButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(updateButton2))
+                        .addGap(208, 208, 208)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(EDIT_TABLE, javax.swing.GroupLayout.PREFERRED_SIZE, 498, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(11, 11, 11))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel11)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(13, 13, 13)
+                .addComponent(EDIT_TABLE, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(EDIT_TABLE, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(59, 59, 59))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(updateButton, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(5, 5, 5)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(updateButton2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(updateButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(updateButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(updateButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(updateButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-           new welcome().setVisible(true);
-           frame.dispose();
+        new welcome().setVisible(true);
+        frame.dispose();
     }//GEN-LAST:event_jButton5ActionPerformed
-
-    private void updateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateButtonActionPerformed
-        // TODO add your handling code here:
-        int row = lessons.getSelectedRow();
-       if (row == -1) {
-        JOptionPane.showMessageDialog(this, "Please select a row first!");
-        return;
-    }
-
-    Object st = lessons.getValueAt(row, 1);
-    if ((st.toString()).equals("completed")) {
-        JOptionPane.showMessageDialog(this, "This lesson is already completed!");
-        return; 
-    }
-    int result = JOptionPane.showConfirmDialog(
-        this,
-        "Are you sure this lesson is completed?",
-        "Confirm Completion",
-        JOptionPane.YES_NO_OPTION
-    );
-
-    if (result == JOptionPane.YES_OPTION) {
-        lessons.setValueAt("Completed", row, 1);
-    }
-    }//GEN-LAST:event_updateButtonActionPerformed
 
     private void lessonsAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_lessonsAncestorAdded
         // TODO add your handling code here:
@@ -339,7 +272,7 @@ public class lessons extends javax.swing.JPanel {
     }//GEN-LAST:event_lessonsMouseClicked
 
     private void lessonsKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_lessonsKeyPressed
-   
+
     }//GEN-LAST:event_lessonsKeyPressed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
@@ -347,16 +280,17 @@ public class lessons extends javax.swing.JPanel {
         frame.dispose();
     }//GEN-LAST:event_jButton6ActionPerformed
 
-    private void updateButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_updateButton1ActionPerformed
-
     private void updateButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateButton2ActionPerformed
-        // TODO add your handling code here:
+        int r = lessons.getSelectedRow();
+        new READING(lessons.getValueAt(1, r).toString()).setVisible(true);
+        // GET CONTENT  FROM DATABASE AND WRITE IT IN PANEL READING
     }//GEN-LAST:event_updateButton2ActionPerformed
 
     private void updateButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateButton3ActionPerformed
-        // TODO add your handling code here:
+        int r = lessons.getSelectedRow();
+        new READING(lessons.getValueAt(1, r).toString()).setVisible(true);
+        lessons.setValueAt("completed", r, 2);
+        // GET CONTENT  FROM DATABASE AND WRITE IT IN PANEL READING
     }//GEN-LAST:event_updateButton3ActionPerformed
 
 
@@ -370,12 +304,9 @@ public class lessons extends javax.swing.JPanel {
     private javax.swing.JDialog jDialog4;
     private javax.swing.JDialog jDialog5;
     private javax.swing.JDialog jDialog6;
-    public javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JSeparator jSeparator1;
     public javax.swing.JTable lessons;
-    private javax.swing.JButton updateButton;
-    private javax.swing.JButton updateButton1;
     private javax.swing.JButton updateButton2;
     private javax.swing.JButton updateButton3;
     // End of variables declaration//GEN-END:variables
