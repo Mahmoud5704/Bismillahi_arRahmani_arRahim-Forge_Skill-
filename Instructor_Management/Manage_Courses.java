@@ -1,6 +1,5 @@
 package Instructor_Management;
 
-import Student_Managment.lessons;
 import User_Account_Management.InstructorDashboard;
 import User_Account_Management.welcome;
 import javax.swing.JFrame;
@@ -20,7 +19,7 @@ public class Manage_Courses extends javax.swing.JPanel {
     @Override
     public void setVisible(boolean f) {
         if (f) {
-            frame = new JFrame("Search and Update Student");
+            frame = new JFrame();
             frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
             frame.getContentPane().add(this);
             frame.pack();
@@ -143,11 +142,11 @@ public class Manage_Courses extends javax.swing.JPanel {
         courses.setForeground(new java.awt.Color(255, 255, 255));
         courses.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {"math", "10"},
-                {"logic", "9"}
+                {"123", "math"},
+                {"123", "logic"}
             },
             new String [] {
-                "TITLE", "num_lessons"
+                "ID", "TITLE"
             }
         ) {
             Class[] types = new Class [] {
@@ -262,12 +261,10 @@ public class Manage_Courses extends javax.swing.JPanel {
                 .addComponent(jLabel11)
                 .addGap(236, 236, 236))
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(9, 9, 9)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(EDIT_TABLE, javax.swing.GroupLayout.PREFERRED_SIZE, 680, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(9, 9, 9)
-                        .addComponent(EDIT_TABLE, javax.swing.GroupLayout.PREFERRED_SIZE, 680, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(9, 9, 9)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                                 .addComponent(updateButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -379,7 +376,9 @@ public class Manage_Courses extends javax.swing.JPanel {
 
     private void updateButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateButton4ActionPerformed
 
-      /*  int r = courses.getSelectedRow();
+      /*
+        
+        int r = courses.getSelectedRow();
         String courseName = courses.getValueAt(r, 0).toString();
         here backend get student from files in panel(view student)
 */      
@@ -389,10 +388,10 @@ public class Manage_Courses extends javax.swing.JPanel {
     }//GEN-LAST:event_updateButton4ActionPerformed
 
     private void updateButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateButton5ActionPerformed
-       int r = courses.getSelectedRow();
-        String courseName = courses.getValueAt(r, 0).toString();
+     //  int r = courses.getSelectedRow();
+     // courses.getValueAt(r, 0).toString();
         frame.dispose();
-        new Managelessons(courseName).setVisible(true);
+        new Managelessons().setVisible(true);
     }//GEN-LAST:event_updateButton5ActionPerformed
     
 
