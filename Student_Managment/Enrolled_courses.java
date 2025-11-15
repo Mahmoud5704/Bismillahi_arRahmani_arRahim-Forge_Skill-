@@ -16,7 +16,7 @@ public class Enrolled_courses extends javax.swing.JPanel {
     @Override
     public void setVisible(boolean f) {
         if (f) {
-            frame = new JFrame("Search and Update Student");
+            frame = new JFrame();
             frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
             frame.getContentPane().add(this);
             frame.pack();
@@ -139,23 +139,21 @@ public class Enrolled_courses extends javax.swing.JPanel {
         enrolled.setAutoCreateRowSorter(true);
         enrolled.setBackground(new java.awt.Color(102, 102, 102));
         enrolled.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        enrolled.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        enrolled.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         enrolled.setForeground(new java.awt.Color(255, 255, 255));
         enrolled.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {"COMP", "100"},
-                {null, null},
-                {null, null}
+                {"10000", "MATH", "100"}
             },
             new String [] {
-                "TITLE", "Progress"
+                "ID", "TITLE", "Progress"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false
+                false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -206,21 +204,19 @@ public class Enrolled_courses extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(174, 174, 174)
-                .addComponent(jLabel11)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(15, 15, 15)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
                         .addComponent(updateButton, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(318, 318, 318)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(EDIT_TABLE, javax.swing.GroupLayout.PREFERRED_SIZE, 692, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
+                    .addComponent(EDIT_TABLE, javax.swing.GroupLayout.PREFERRED_SIZE, 522, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(91, 91, 91)
+                        .addComponent(jLabel11)))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -244,10 +240,10 @@ public class Enrolled_courses extends javax.swing.JPanel {
 
     private void updateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateButtonActionPerformed
 
-        int r = enrolled.getSelectedRow();
-        String courseName = enrolled.getValueAt(r, 0).toString();
+      //  int r = enrolled.getSelectedRow();
+     //  enrolled.getValueAt(r, 1).toString();
         frame.dispose();
-        new lessons(courseName).setVisible(true);
+        new lessons().setVisible(true);
 
         // TODO add your handling code here:
 
