@@ -1,6 +1,8 @@
 package User_Account_Management;
 
 import Instructor_Management.Manage_Courses;
+import backend.JsonDataBaseManager;
+import javax.swing.ImageIcon;
 
 public class InstructorDashboard extends javax.swing.JFrame {
 
@@ -9,6 +11,8 @@ public class InstructorDashboard extends javax.swing.JFrame {
     public InstructorDashboard() {
         initComponents();
         setLocationRelativeTo(null);
+        jLabel1.setIcon(new ImageIcon(JsonDataBaseManager.INSTRUCTOR_PATH));
+
     }
 
     @SuppressWarnings("unchecked")

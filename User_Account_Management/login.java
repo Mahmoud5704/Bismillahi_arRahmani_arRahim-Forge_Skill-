@@ -1,16 +1,14 @@
 package User_Account_Management;
 import backend.Instructor;
-import backend.Student;
-import backend.User;
-import backend.UserService;
-import backend.Validation;
+import backend.*;
 import java.awt.Color;
-
+import javax.swing.ImageIcon;
 public class login extends javax.swing.JFrame {
     
     public login() {
         initComponents();
         setLocationRelativeTo(null);
+        jLabel3.setIcon(new ImageIcon(JsonDataBaseManager.LOGIN_PATH));
     }
     
     ///////////////////////////////////////////////////////////  

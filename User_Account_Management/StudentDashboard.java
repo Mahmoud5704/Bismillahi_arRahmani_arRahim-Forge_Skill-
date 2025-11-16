@@ -3,6 +3,7 @@ package User_Account_Management;
 import Student_Managment.Browse_Courses;
 import Student_Managment.Enrolled_courses;
 import backend.*;
+import javax.swing.ImageIcon;
 public class StudentDashboard extends javax.swing.JFrame {
 
     private Student student ;
@@ -11,6 +12,7 @@ public class StudentDashboard extends javax.swing.JFrame {
         this.student = student;
         initComponents();
         setLocationRelativeTo(null);
+        jLabel1.setIcon(new ImageIcon(JsonDataBaseManager.MAIN_PATH));
     }
 
     @SuppressWarnings("unchecked")
@@ -40,7 +42,6 @@ public class StudentDashboard extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(204, 204, 204));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\ELOott\\Documents\\NetBeansProjects\\GUII\\src\\main\\java\\imgs\\main.png")); // NOI18N
         jLabel1.setText("jLabel1");
 
         jPanel2.setBackground(new java.awt.Color(102, 102, 102));

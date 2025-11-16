@@ -29,13 +29,11 @@ public class StudentService
     //************************************************************************//
     public int studentEnrollment(Student s, Course c) {
 
-        if (s.getCourses().contains(c)) {
+        if (s.getCourses().contains(c.getCourseId())) {
             return 0;
         }
-
-        List<Course> currentCourses = s.getCourses();
-        currentCourses.add(c);
-        s.setCourses(currentCourses);
+        
+        s.addCourse(c.getCourseId());
 
         c.addStudent(s);
 
@@ -119,12 +117,11 @@ public double getCourseProgressPercentage(Student s, Course c) {
 //****************************************************************************//
     
     public Course getCourseById(Student s,String courseId) {
-        for (Course c : s.getCourses()) {
-            if (c.getCourseId().equals(courseId)) {  
+        List<Course> courses = JsonDataBaseManager.getCourses();
+        for(Course c : courses){
+            if(c.getCourseId().equals(courseId) && c.getStudents().contains(s.getUserId()))
                 return c;
-            }
         }
-    
     return null; 
     
     

@@ -8,10 +8,10 @@ import java.util.List;
 import java.io.*;
 import java.util.*;
 public class Student extends User {
-      private List<Course> courses;
+      private List<String> courses;
       private List<progress> progressList;
       //**********************************************************************//
-   public Student(String id, String name, String email, String pass,List<Course> courses, List<progress> progressList) 
+   public Student(String id, String name, String email, String pass,List<String> courses, List<progress> progressList) 
     {
         super(id, name, email, pass, UserService.StudentRole);
         this.courses =  new ArrayList<>(courses);
@@ -28,15 +28,18 @@ public class Student extends User {
     {
               return role;
     }
-    public List<Course> getCourses()
+    public List<String> getCourses()
     {
         return new ArrayList<>(courses); 
     }
     
-    public void setCourses(List<Course> courses) 
-    {
-        this.courses =  new ArrayList<>(courses);
-    }   
+//    public void setCourses(List<Course> courses) 
+//    {
+//        this.courses =  new ArrayList<>(courses);
+//    }
+    public void addCourse(String courseID){
+        this.courses.add(courseID);
+    }
     public  List<progress> getProgress() 
     {
         return  progressList;

@@ -295,8 +295,9 @@ public class Enrolled_courses extends javax.swing.JPanel {
     
 
     model.setRowCount(0);
-
-    for (Course c : student.getCourses()) {
+        StudentService ss = new StudentService();
+    for (String courseID : student.getCourses()) {
+        Course c = ss.getCourseById(student, courseID);
         Object[] row = new Object[3];
         row[0] = c.getCourseId();  
         row[1] = c.getTitle(); 

@@ -326,7 +326,7 @@ public class lessons extends javax.swing.JPanel {
     List<Lesson> lessonList = course.getLessons();
     progress courseProgress = null;
     for (progress p : student.getProgress()) {
-        if (p.getCourseId() == course.getCourseId()) {
+        if (p.getCourseId().equals(course.getCourseId())) {
             courseProgress = p;
             break;
         }
