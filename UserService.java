@@ -3,10 +3,24 @@ package backend;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.List;
 import static java.util.Objects.hash;
 
 public class UserService {
     
+    public static User login(String username, String password){
+        List<User> users = JsonDataBaseManager.getUsers();
+        for(int i = 0; i < users.size(); i++){
+            if(users.get(i).getPassword().equals(encrypt(password)) && users.get(i).getUsername().equals(username)){
+                return users.get(i);
+            }
+        }
+        return null; //user not found
+    }
+    public static User signup(String username, String email, String password, String role){
+        List<User> users = JsonDataBaseManager.getUsers();
+        
+    }
     public static void test(String test){
         encrypt(test);
     }
