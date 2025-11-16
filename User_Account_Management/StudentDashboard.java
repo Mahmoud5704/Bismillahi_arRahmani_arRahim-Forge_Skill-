@@ -1,11 +1,14 @@
 package User_Account_Management;
+
 import Student_Managment.Browse_Courses;
 import Student_Managment.Enrolled_courses;
+import backend.*;
 public class StudentDashboard extends javax.swing.JFrame {
 
+    private Student student ;
     
-    
-    public StudentDashboard() {
+    public StudentDashboard(Student student) {
+        this.student = student;
         initComponents();
         setLocationRelativeTo(null);
     }
@@ -153,7 +156,7 @@ public class StudentDashboard extends javax.swing.JFrame {
     }//GEN-LAST:event_formComponentAdded
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        new Enrolled_courses().setVisible(true);
+        new Enrolled_courses(student).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton6ActionPerformed
 
@@ -163,7 +166,7 @@ public class StudentDashboard extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-       new Browse_Courses().setVisible(true);
+       new Browse_Courses(student).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton7ActionPerformed
 

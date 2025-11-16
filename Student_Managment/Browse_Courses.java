@@ -1,19 +1,25 @@
 package Student_Managment;
-
+import javax.swing.table.DefaultTableModel;
+import java.util.List;
 import User_Account_Management.StudentDashboard;
 import User_Account_Management.welcome;
 import javax.swing.JFrame;
 import javax.swing.RowFilter;
 import javax.swing.table.TableRowSorter;
 import javax.swing.table.DefaultTableModel;
-
+import backend.*;
 public class Browse_Courses extends javax.swing.JPanel {
-
+    private Student student;
+    private StudentService studentservice;
+    Course course = null;
     private JFrame frame;
 
-    public Browse_Courses() {
+    public Browse_Courses(Student student) {
+        this.student = student;
+        studentservice = new StudentService();
+        
         initComponents();
-
+        loadStudentCourses();
     }
 
     @Override
@@ -263,7 +269,17 @@ public class Browse_Courses extends javax.swing.JPanel {
 
     private void updateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateButtonActionPerformed
         // TODO add your handling code here:
-
+        getSelectedCourse();
+        if(course == null)
+            return;
+        Course seccourse = studentservice.getCourseById(student, course.getCourseId());
+        if(seccourse != null)
+            javax.swing.JOptionPane.showMessageDialog(null, "You are already enrolled in this course!");
+        else
+        {
+            studentservice.studentEnrollment(student, course);
+             javax.swing.JOptionPane.showMessageDialog(null, "Enrolled Successfully!");
+        }
     }//GEN-LAST:event_updateButtonActionPerformed
 
 
@@ -285,11 +301,62 @@ public class Browse_Courses extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        new StudentDashboard().setVisible(true);
+        new StudentDashboard(student).setVisible(true);
         frame.dispose();
     }//GEN-LAST:event_jButton6ActionPerformed
 
+private void loadStudentCourses() {
+    DefaultTableModel model = (DefaultTableModel) edittable.getModel();
+    model.setRowCount(0); // Clear table first
 
+    List<Course> courses = studentservice.getAllAvailableCourses();
+
+    for (Course c : courses) {
+        model.addRow(new Object[]{
+            c.getCourseId(),          
+            c.getTitle(),       
+            c.getDescription()  
+        });
+    }
+}  
+    
+    
+    
+    
+    
+    
+    
+
+
+
+private Course getSelectedCourse() {
+    int selectedRow = edittable.getSelectedRow();
+
+    if (selectedRow == -1) {
+        javax.swing.JOptionPane.showMessageDialog(null, "Please select a course first!");
+        return null;
+    }
+
+    DefaultTableModel model = (DefaultTableModel) edittable.getModel();
+    
+    String id = model.getValueAt(selectedRow, 0).toString();
+    
+    course = studentservice.getCoursebyid(id);
+
+    return course;
+}
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JScrollPane EDIT_TABLE;
     public javax.swing.JTable edittable;

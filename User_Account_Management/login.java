@@ -1,14 +1,18 @@
 package User_Account_Management;
-
+import backend.Instructor;
+import backend.Student;
+import backend.User;
+import backend.UserService;
+import backend.Validation;
 import java.awt.Color;
 
 public class login extends javax.swing.JFrame {
-
- 
+    
     public login() {
         initComponents();
         setLocationRelativeTo(null);
     }
+    
     ///////////////////////////////////////////////////////////  
       //1-validate login user to files 
       //2-validation
@@ -163,7 +167,7 @@ public class login extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, 71, Short.MAX_VALUE)
+                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 71, Short.MAX_VALUE)
                 .addGap(333, 333, 333))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -289,7 +293,6 @@ public class login extends javax.swing.JFrame {
         });
         getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 420, 90, 40));
 
-        jLabel3.setIcon(new javax.swing.ImageIcon("C:\\Users\\ELOott\\Documents\\NetBeansProjects\\GUII\\src\\main\\java\\imgs\\login.jpeg")); // NOI18N
         jLabel3.setText("jLabel3");
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 560, 590));
 
@@ -306,8 +309,22 @@ public class login extends javax.swing.JFrame {
     }//GEN-LAST:event_formComponentAdded
 
     private void loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginActionPerformed
-        // TODO add your handling code here:
-
+//         TODO add your handling code here:
+        String selectedRole = jComboBox1.getSelectedItem().toString();
+        String username = userField.getText();
+        String pass = passField.getText();
+        User user;
+        user = UserService.login(username, pass, selectedRole);
+        if(user == null)
+            javax.swing.JOptionPane.showMessageDialog(new javax.swing.JFrame(), "username or password incorrect");
+        else{
+            if (selectedRole.equals(UserService.StudentRole)) {
+                new StudentDashboard((Student) user).setVisible(true);
+            } else {
+                new InstructorDashboard().setVisible(true);
+            }
+            this.dispose();
+        }
     }//GEN-LAST:event_loginActionPerformed
 
     private void userFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userFieldActionPerformed
@@ -317,17 +334,6 @@ public class login extends javax.swing.JFrame {
 
     private void loginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loginMouseClicked
 
-       String selectedRole = jComboBox1.getSelectedItem().toString();
-
-        if (selectedRole.equals("Student")) {
-            new StudentDashboard().setVisible(true);
-            this.dispose();
-
-        } else {
-            new InstructorDashboard().setVisible(true);
-            this.dispose();
-
-        }
     }//GEN-LAST:event_loginMouseClicked
 
     private void userFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_userFieldFocusGained

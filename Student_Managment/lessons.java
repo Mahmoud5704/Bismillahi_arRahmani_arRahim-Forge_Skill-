@@ -1,15 +1,24 @@
 package Student_Managment;
-
+import Instructor_Management.LESSON;
+import javax.swing.table.DefaultTableModel;
+import User_Account_Management.*;
+import javax.swing.JFrame;
+import backend.*;
+import javax.swing.JTable;
 import User_Account_Management.welcome;
+import java.util.List;
 import javax.swing.JFrame;
 
 public class lessons extends javax.swing.JPanel {
-
+    private Student student ;
+    private Course course ;
     private JFrame frame;
 
-    public lessons() {
+    public lessons(Student student,Course course) {
+        this.student = student;
+        this.course = course;
         initComponents();
-
+        loadLessonsTable();
     }
 
     @Override
@@ -276,7 +285,7 @@ public class lessons extends javax.swing.JPanel {
     }//GEN-LAST:event_lessonsKeyPressed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        new Enrolled_courses().setVisible(true);
+        new Enrolled_courses(student).setVisible(true);
         frame.dispose();
     }//GEN-LAST:event_jButton6ActionPerformed
 
@@ -287,12 +296,63 @@ public class lessons extends javax.swing.JPanel {
     }//GEN-LAST:event_updateButton2ActionPerformed
 
     private void updateButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateButton3ActionPerformed
-        int r = lessons.getSelectedRow();
-        new READING(lessons.getValueAt(1, r).toString()).setVisible(true);
-        lessons.setValueAt("completed", r, 2);
-        // GET CONTENT  FROM DATABASE AND WRITE IT IN PANEL READING
+    int r = lessons.getSelectedRow();
+    if (r >= 0) {
+        
+        String lessonTitle = lessons.getValueAt(r, 1).toString();
+
+        
+        LESSON lessonDialog = new LESSON(null, true, lessonTitle);
+        lessonDialog.setVisible(true);
+
+       
+        lessons.setValueAt("COMPLETED", r, 2);
+        loadLessonsTable();
+    }
     }//GEN-LAST:event_updateButton3ActionPerformed
 
+    
+    
+    
+
+    
+    
+  private void loadLessonsTable() {
+    DefaultTableModel model = (DefaultTableModel) lessons.getModel();
+    model.setRowCount(0); 
+
+    if (course == null || student == null) return;
+
+    List<Lesson> lessonList = course.getLessons();
+    progress courseProgress = null;
+    for (progress p : student.getProgress()) {
+        if (p.getCourseId() == course.getCourseId()) {
+            courseProgress = p;
+            break;
+        }
+    }
+    
+
+    if (courseProgress == null) return;
+    for (Lesson lesson : lessonList) {
+        String status = courseProgress.isLessonCompleted(lesson.getLessonId()) 
+                        ? "COMPLETED" : "NOT_COMPLETED";
+
+        model.addRow(new Object[]{ lesson.getLessonId(), lesson.getTitle(), status });
+    }
+}  
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JScrollPane EDIT_TABLE;

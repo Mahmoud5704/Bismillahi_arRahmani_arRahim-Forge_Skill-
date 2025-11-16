@@ -1,16 +1,23 @@
 package Student_Managment;
 
-import User_Account_Management.StudentDashboard;
-import User_Account_Management.welcome;
+
+import User_Account_Management.*;
 import javax.swing.JFrame;
+import backend.*;
+import javax.swing.table.DefaultTableModel;
+
 
 public class Enrolled_courses extends javax.swing.JPanel {
+    private Student student ;
+    private StudentService studentservice;
 
     private JFrame frame;
 
-    public Enrolled_courses() {
+    public Enrolled_courses(Student student) {
+        this.student = student;
+        studentservice = new StudentService();
         initComponents();
-
+        loadEnrolledCourses(student);
     }
 
     @Override
@@ -143,14 +150,14 @@ public class Enrolled_courses extends javax.swing.JPanel {
         enrolled.setForeground(new java.awt.Color(255, 255, 255));
         enrolled.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {"10000", "MATH", "100"}
+                {"10000", "MATH", null}
             },
             new String [] {
-                "ID", "TITLE", "Progress"
+                "ID", "TITLE", "progress%"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.Double.class
             };
             boolean[] canEdit = new boolean [] {
                 false, false, false
@@ -239,11 +246,24 @@ public class Enrolled_courses extends javax.swing.JPanel {
         frame.dispose();    }//GEN-LAST:event_jButton5ActionPerformed
 
     private void updateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateButtonActionPerformed
-
+    StudentService studentservice = new StudentService();
       //  int r = enrolled.getSelectedRow();
      //  enrolled.getValueAt(r, 1).toString();
+     int r = enrolled.getSelectedRow();
+     Course course;
+    if(r != -1) 
+    {
+        String ID = enrolled.getValueAt(r, 0).toString();
+//    int id = Integer.parseInt(ID);
+    
+        course = studentservice.getCourseById(student, ID) ;
+    }
+    else{
+        course = null;
+    }
+ //   new LESSON().setVisible(true); *******************************************************************************************************************************************************************************
         frame.dispose();
-        new lessons().setVisible(true);
+        new lessons(student , course).setVisible(true);
 
         // TODO add your handling code here:
 
@@ -262,10 +282,33 @@ public class Enrolled_courses extends javax.swing.JPanel {
     }//GEN-LAST:event_enrolledKeyPressed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        new StudentDashboard().setVisible(true);
+        new StudentDashboard(student).setVisible(true);
         frame.dispose();
     }//GEN-LAST:event_jButton6ActionPerformed
+    
+    
+    
+    
+    public void loadEnrolledCourses(Student student) {
+    
+    DefaultTableModel model = (DefaultTableModel) enrolled.getModel();
+    
 
+    model.setRowCount(0);
+
+    for (Course c : student.getCourses()) {
+        Object[] row = new Object[3];
+        row[0] = c.getCourseId();  
+        row[1] = c.getTitle(); 
+        row[2] = studentservice.getCourseProgressPercentage(student,c);
+        model.addRow(row);
+    }
+}
+    
+    
+    
+    
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JScrollPane EDIT_TABLE;
