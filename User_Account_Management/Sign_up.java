@@ -1,9 +1,10 @@
 package User_Account_Management;
+import backend.*;
 import java.awt.Color;
-
+import javax.swing.JFrame;
 public class Sign_up extends javax.swing.JFrame {
     
-
+    JFrame frame = new JFrame();
     public Sign_up() {
         initComponents();
         setLocationRelativeTo(null);
@@ -35,12 +36,12 @@ public class Sign_up extends javax.swing.JFrame {
         jPanel4 = new javax.swing.JPanel();
         userField1 = new javax.swing.JTextField();
         userField2 = new javax.swing.JTextField();
-        userField = new javax.swing.JTextField();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        userField0 = new javax.swing.JTextField();
+        roleSelection = new javax.swing.JComboBox<>();
+        emailField = new javax.swing.JTextField();
         login = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
-        jButton4 = new javax.swing.JButton();
 
         javax.swing.GroupLayout jFrame1Layout = new javax.swing.GroupLayout(jFrame1.getContentPane());
         jFrame1.getContentPane().setLayout(jFrame1Layout);
@@ -163,7 +164,7 @@ public class Sign_up extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, 64, Short.MAX_VALUE)
+                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 64, Short.MAX_VALUE)
                 .addGap(0, 0, 0)
                 .addComponent(jLabel2)
                 .addGap(118, 118, 118))
@@ -230,35 +231,58 @@ public class Sign_up extends javax.swing.JFrame {
             }
         });
 
-        userField.setBackground(new java.awt.Color(0, 102, 153));
-        userField.setForeground(new java.awt.Color(153, 153, 153));
-        userField.setText("email");
-        userField.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        userField.setCaretColor(new java.awt.Color(255, 255, 255));
-        userField.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-        userField.setDebugGraphicsOptions(javax.swing.DebugGraphics.LOG_OPTION);
-        userField.setDisabledTextColor(new java.awt.Color(204, 204, 204));
-        userField.setOpaque(true);
-        userField.addFocusListener(new java.awt.event.FocusAdapter() {
+        userField0.setBackground(new java.awt.Color(0, 102, 153));
+        userField0.setForeground(new java.awt.Color(153, 153, 153));
+        userField0.setText("username");
+        userField0.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        userField0.setCaretColor(new java.awt.Color(255, 255, 255));
+        userField0.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        userField0.setDebugGraphicsOptions(javax.swing.DebugGraphics.LOG_OPTION);
+        userField0.setDisabledTextColor(new java.awt.Color(204, 204, 204));
+        userField0.setOpaque(true);
+        userField0.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
-                userFieldFocusGained(evt);
+                userField0FocusGained(evt);
             }
             public void focusLost(java.awt.event.FocusEvent evt) {
-                userFieldFocusLost(evt);
+                userField0FocusLost(evt);
             }
         });
-        userField.addActionListener(new java.awt.event.ActionListener() {
+        userField0.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                userFieldActionPerformed(evt);
+                userField0ActionPerformed(evt);
             }
         });
 
-        jComboBox1.setBackground(new java.awt.Color(0, 51, 102));
-        jComboBox1.setForeground(new java.awt.Color(255, 255, 255));
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Student", "Instructor" }));
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+        roleSelection.setBackground(new java.awt.Color(0, 51, 102));
+        roleSelection.setForeground(new java.awt.Color(255, 255, 255));
+        roleSelection.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Student", "Instructor" }));
+        roleSelection.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
+                roleSelectionActionPerformed(evt);
+            }
+        });
+
+        emailField.setBackground(new java.awt.Color(0, 102, 153));
+        emailField.setForeground(new java.awt.Color(153, 153, 153));
+        emailField.setText("email");
+        emailField.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        emailField.setCaretColor(new java.awt.Color(255, 255, 255));
+        emailField.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        emailField.setDebugGraphicsOptions(javax.swing.DebugGraphics.LOG_OPTION);
+        emailField.setDisabledTextColor(new java.awt.Color(204, 204, 204));
+        emailField.setOpaque(true);
+        emailField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                emailFieldFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                emailFieldFocusLost(evt);
+            }
+        });
+        emailField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                emailFieldActionPerformed(evt);
             }
         });
 
@@ -266,33 +290,36 @@ public class Sign_up extends javax.swing.JFrame {
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(106, 106, 106)
+                .addComponent(roleSelection, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                 .addContainerGap(30, Short.MAX_VALUE)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(emailField, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(userField1, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(userField, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(userField0, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(userField2, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(28, 28, 28))
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(106, 106, 106)
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap(31, Short.MAX_VALUE)
-                .addComponent(userField, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(22, Short.MAX_VALUE)
+                .addComponent(emailField, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(userField0, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(12, 12, 12)
                 .addComponent(userField1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(userField2, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(roleSelection, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
-        getContentPane().add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 180, 320, 220));
+        getContentPane().add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 180, 320, 260));
 
         login.setBackground(new java.awt.Color(0, 102, 153));
         login.setForeground(new java.awt.Color(255, 255, 255));
@@ -307,7 +334,7 @@ public class Sign_up extends javax.swing.JFrame {
                 loginActionPerformed(evt);
             }
         });
-        getContentPane().add(login, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 420, 172, 39));
+        getContentPane().add(login, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 450, 172, 39));
 
         jButton3.setBackground(new java.awt.Color(0, 51, 102));
         jButton3.setForeground(new java.awt.Color(255, 255, 255));
@@ -317,21 +344,10 @@ public class Sign_up extends javax.swing.JFrame {
                 jButton3ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 420, 100, 40));
+        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 450, 100, 40));
 
-        jLabel3.setIcon(new javax.swing.ImageIcon("C:\\Users\\ELOott\\Documents\\NetBeansProjects\\GUII\\src\\main\\java\\imgs\\login.jpeg")); // NOI18N
         jLabel3.setText("jLabel3");
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 560, 590));
-
-        jButton4.setBackground(new java.awt.Color(0, 102, 153));
-        jButton4.setForeground(new java.awt.Color(255, 255, 255));
-        jButton4.setText("BACK");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 430, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -341,35 +357,74 @@ public class Sign_up extends javax.swing.JFrame {
     }//GEN-LAST:event_formComponentAdded
 
     private void loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginActionPerformed
-     
+        String username = userField0.getText();
+        String email = emailField.getText();
+        String pass1 = userField1.getText();
+        String pass2 = userField2.getText();
+        String error_msg = "";
+        if(!Validation.verifyName(username))
+            error_msg += "username can only contain english letters, spaces or underscores!";
+        if(!Validation.verifyPassword(pass1))
+            error_msg += "password must be 8 characters or more!";
+        if(!pass1.equals(pass2))
+            error_msg += "passwords don't match!";
+        if(error_msg.length() > 1)
+            javax.swing.JOptionPane.showMessageDialog(frame, error_msg);
+        else{
+            String role = roleSelection.getSelectedItem().toString();
+            User user;
+            if(role.equals(UserService.StudentRole)){
+                user = UserService.signup(username, email, pass1, role);
+                
+            }
+            else if(role.equals(UserService.InstructorRole)){
+                user = UserService.signup(username, email, pass1, role);
+            }
+            else{
+                user = null;
+            }
+            if(user != null){
+                this.dispose();
+                new login().setVisible(true);
+            }
+            else{
+                javax.swing.JOptionPane.showMessageDialog(frame, "username or email already exists");
+            }
+        }
 
     }//GEN-LAST:event_loginActionPerformed
 
-    private void userFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userFieldActionPerformed
+    private void userField0ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userField0ActionPerformed
 
 
-    }//GEN-LAST:event_userFieldActionPerformed
+    }//GEN-LAST:event_userField0ActionPerformed
 
     private void loginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loginMouseClicked
-       
-       this.dispose();
-       new login().setVisible(true);
-    
+
     }//GEN-LAST:event_loginMouseClicked
 
-    private void userFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_userFieldFocusGained
-        if (userField.getText().equals("username")) {
-            userField.setText("");
-            userField.setForeground(Color.white);
+    private void userField0FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_userField0FocusGained
+        if (userField0.getText().equals("username")) {
+            userField0.setText("");
+            userField0.setForeground(Color.white);
+            Color c = new Color(0,102,153);
+            userField0.setBackground(c);
         }
-    }//GEN-LAST:event_userFieldFocusGained
+    }//GEN-LAST:event_userField0FocusGained
 
-    private void userFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_userFieldFocusLost
-        if (userField.getText().equals("")) {
-            userField.setText("username");
-            userField.setForeground(Color.GRAY);
+    private void userField0FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_userField0FocusLost
+        String input = userField0.getText();
+        if (input.equals("")) {
+            userField0.setText("username");
+            userField0.setForeground(Color.GRAY);
         }
-    }//GEN-LAST:event_userFieldFocusLost
+        if(!Validation.verifyName(input)){
+            userField0.setBackground(Color.red);
+        }
+        else
+            userField0.setBackground(Color.green);
+
+    }//GEN-LAST:event_userField0FocusLost
 
     private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
         // TODO add your handling code here:
@@ -377,10 +432,26 @@ public class Sign_up extends javax.swing.JFrame {
 
     private void userField1FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_userField1FocusGained
         // TODO add your handling code here:
+        if (userField1.getText().equals("password")) {
+            userField1.setText("");
+            userField1.setForeground(Color.white);
+            Color c = new Color(0,102,153);
+            userField1.setBackground(c);
+        }
     }//GEN-LAST:event_userField1FocusGained
 
     private void userField1FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_userField1FocusLost
         // TODO add your handling code here:
+       String input = userField1.getText();
+        if (input.equals("")) {
+            userField1.setText("password");
+            userField1.setForeground(Color.GRAY);
+        }
+        if(!Validation.verifyPassword(input)){
+            userField1.setBackground(Color.red);
+        }
+        else
+            userField1.setBackground(Color.green);
     }//GEN-LAST:event_userField1FocusLost
 
     private void userField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userField1ActionPerformed
@@ -388,36 +459,75 @@ public class Sign_up extends javax.swing.JFrame {
     }//GEN-LAST:event_userField1ActionPerformed
 
     private void userField2FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_userField2FocusGained
-        // TODO add your handling code here:
+        // TODO add your handling code here
+        if (userField2.getText().equals("confirm password")) {
+            userField2.setText("");
+            userField2.setForeground(Color.white);
+            Color c = new Color(0,102,153);
+            userField2.setBackground(c);
+        }
     }//GEN-LAST:event_userField2FocusGained
 
     private void userField2FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_userField2FocusLost
         // TODO add your handling code here:
+        String input = userField2.getText();
+        if (input.equals("")) {
+            userField2.setText("confirm password");
+            userField2.setForeground(Color.GRAY);
+        }
+        if(!Validation.verifyPassword(input)){
+            userField2.setBackground(Color.red);
+        }
+        else
+            userField2.setBackground(Color.green);
     }//GEN-LAST:event_userField2FocusLost
 
     private void userField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userField2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_userField2ActionPerformed
 
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+    private void roleSelectionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_roleSelectionActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox1ActionPerformed
+    }//GEN-LAST:event_roleSelectionActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
        new welcome().setVisible(true);
        this.dispose();     // TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-             // TODO add your handling code here:
-    }//GEN-LAST:event_jButton4ActionPerformed
+    private void emailFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_emailFieldFocusGained
+        // TODO add your handling code here:
+        if (emailField.getText().equals("email")) {
+            emailField.setText("");
+            emailField.setForeground(Color.white);
+            Color c = new Color(0,102,153);
+            emailField.setBackground(c);
+        }
+    }//GEN-LAST:event_emailFieldFocusGained
+
+    private void emailFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_emailFieldFocusLost
+        // TODO add your handling code here:
+        String input = emailField.getText();
+        if (input.equals("")) {
+            emailField.setText("email");
+            emailField.setForeground(Color.GRAY);
+        }
+        if(!Validation.verifyEmail(input)){
+            emailField.setBackground(Color.red);
+        }
+        else
+            emailField.setBackground(Color.green);
+    }//GEN-LAST:event_emailFieldFocusLost
+
+    private void emailFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emailFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_emailFieldActionPerformed
 
      
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.JTextField emailField;
     private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JDialog jDialog1;
     private javax.swing.JFrame jFrame1;
     private javax.swing.JFrame jFrame2;
@@ -432,7 +542,8 @@ public class Sign_up extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JButton login;
-    private javax.swing.JTextField userField;
+    private javax.swing.JComboBox<String> roleSelection;
+    private javax.swing.JTextField userField0;
     private javax.swing.JTextField userField1;
     private javax.swing.JTextField userField2;
     // End of variables declaration//GEN-END:variables
