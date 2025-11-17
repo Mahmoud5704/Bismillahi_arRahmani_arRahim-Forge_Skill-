@@ -4,41 +4,35 @@ import User_Account_Management.welcome;
 import backend.Course;
 import backend.Lesson;
 import backend.courseManagement;
-import databaseservice.JsonDataBaseManager;
 import databaseservice.TableLoader;
 import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
-
 public class Managelessons extends javax.swing.JPanel {
 
     private JFrame frame;
     public String courseId;
     public String InstructorID;
+
     public Managelessons(String courseId, String instID) {
         initComponents();
-        this.InstructorID=instID;
-        this.courseId=courseId;
+        this.InstructorID = instID;
+        this.courseId = courseId;
         courseManagement manager = new courseManagement();
         List<Lesson> LessonList = manager.getLessonsByCourse(courseId);
-        TableLoader.load((DefaultTableModel)lessons.getModel(), LessonList);
-        
+        TableLoader.load((DefaultTableModel) lessons.getModel(), LessonList);
 
     }
-private void refreshCourseTable() {
-    
+
+    private void refreshCourseTable() {
+
         courseManagement manager = new courseManagement();
         List<Lesson> LessonList = manager.getLessonsByCourse(courseId);
-        TableLoader.load((DefaultTableModel)lessons.getModel(), LessonList);
-}
-private void refreshLessonsTable() {
-    
-        courseManagement manager = new courseManagement();
-        List<Lesson> LessonList = manager.getLessonsByCourse(courseId);
-        TableLoader.load((DefaultTableModel)lessons.getModel(), LessonList);
-}
+        TableLoader.load((DefaultTableModel) lessons.getModel(), LessonList);
+    }
+
     @Override
     public void setVisible(boolean f) {
         if (f) {
@@ -50,7 +44,8 @@ private void refreshLessonsTable() {
             frame.setVisible(true);
         }
     }
-       ///////////////////////////////////////////////////////////  
+
+    ///////////////////////////////////////////////////////////  
       // 1- MAKE DELETE BUTTON TO DELETE FROM FILE
       //2- LOAD IN TABELE FROM FILES AS NEEDED NOT ALL 
   
@@ -329,31 +324,21 @@ private void refreshLessonsTable() {
     }//GEN-LAST:event_lessonsKeyPressed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-            new Manage_Courses(InstructorID).setVisible(true);
-             frame.dispose();
+        new Manage_Courses(InstructorID).setVisible(true);
+        frame.dispose();
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void updateButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateButton1ActionPerformed
-        int row = lessons.getSelectedRow();
-    if (row >= 0) { 
-        int confirm = JOptionPane.showConfirmDialog(this, "Are you sure?", "Confirm Delete", JOptionPane.YES_NO_OPTION);
-        
-        if (confirm == JOptionPane.YES_OPTION) {
-            String lessonId = lessons.getValueAt(row, 0).toString();
-            
-            // Call static delete method directly
-            JsonDataBaseManager.deleteLesson(courseId,lessonId);
-            
-            // Remove from table UI
-            ((DefaultTableModel)lessons.getModel()).removeRow(row);
-        }
-    }
+
     }//GEN-LAST:event_updateButton1ActionPerformed
 
     private void updateButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateButton2ActionPerformed
         int r = lessons.getSelectedRow();
-        String lessonsName = lessons.getValueAt(r, 0).toString();  
-        new LESSON(frame,true,lessonsName, courseId).setVisible(true);
+        String id = lessons.getValueAt(r, 0).toString();
+        DefaultTableModel model = (DefaultTableModel) lessons.getModel();
+        String lessonsName = lessons.getValueAt(r, 1).toString();
+         courseManagement manager = new courseManagement();
+        new LESSON(frame, true,manager,courseId, id,lessonsName,model,r).setVisible(true);
     }//GEN-LAST:event_updateButton2ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
@@ -362,8 +347,7 @@ private void refreshLessonsTable() {
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void updateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateButtonActionPerformed
-                new LESSON(frame,true, courseId).setVisible(true);
-                refreshLessonsTable();
+        new LESSON(frame, true).setVisible(true);
     }//GEN-LAST:event_updateButtonActionPerformed
 
 
