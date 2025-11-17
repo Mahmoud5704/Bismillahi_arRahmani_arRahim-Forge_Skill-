@@ -1,7 +1,6 @@
 package databaseservice;
 import backend.Course;
 import backend.Instructor;
-import backend.Lesson;
 import backend.Student;
 import backend.User;
 import java.io.FileWriter;
@@ -98,19 +97,10 @@ public class JsonDataBaseManager {
         users.add(u);
         saveUsers();
     }
-public static void addCourse(Course c) {
-    // Generate ID if missing
-    if (c.getId() == null) {
-        c.setId("C" + (courses.size() + 1));
+    public static void addCourse(Course c){
+        courses.add(c);
+        saveCourses();
     }
-    // Set instructorId if missing (you need to pass it from GUI)
-    if (c.getInstructorId() == null) {
-        c.setInstructorId("default_instructor"); // Or get from logged in user
-    }
-    
-    courses.add(c);
-    saveCourses();
-}
     public static void updateUser(User u){
         String UID = u.getUserId();
         for(int i = 0; i < users.size(); i++){
@@ -134,37 +124,8 @@ public static void addCourse(Course c) {
         saveCourses();
     }
 public static void deleteCourse(String courseId) {
-    List<Course> allCourses = getCourses();
-    allCourses.removeIf(c -> c.getId() != null && c.getId().equals(courseId));
+    getCourses().removeIf(c -> c.getId().equals(courseId));
     saveCourses();
-}
-public static void deleteLesson(String courseId, String lessonId) {
-    List<Course> allCourses = getCourses();
-    //System.out.println("=== DEBUG deleteLesson ===");
-    
-    for (Course course : allCourses) {
-        //System.out.println("Checking course: " + course.getTitle() + " | ID: " + course.getId());
-        if (course.getId() != null && course.getId().equals(courseId)) {
-            course.getLessons().removeIf(lesson -> 
-                lesson.getId() != null && lesson.getId().equals(lessonId));
-            saveCourses();
-            return;
-        }
-    }
-}
-public static void addLesson(String courseId, Lesson lesson) {
-    List<Course> allCourses = getCourses();
-    for (Course course : allCourses) {
-        if (course.getId() != null && course.getId().equals(courseId)) {
-            // Generate lesson ID if missing
-            if (lesson.getId() == null) {
-                lesson.setId("L" + (course.getLessons().size() + 1));
-            }
-            course.getLessons().add(lesson);
-            saveCourses();
-            return;
-        }
-    }
 }
     public static void removeUser(User u){
         users.remove(u);
