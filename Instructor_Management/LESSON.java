@@ -1,26 +1,50 @@
 package Instructor_Management;
 
+import backend.Course;
 import backend.Lesson;
-import databaseservice.JsonDataBaseManager;
-import java.util.Arrays;
+import backend.courseManagement;
 import java.util.List;
+import javax.swing.table.DefaultTableModel;
 
 public class LESSON extends javax.swing.JDialog {
-    private String courseId;
-    public LESSON(java.awt.Frame parent, boolean modal, String title, String courseId) {//update course
+
+    private DefaultTableModel Model;
+    private int r;
+    private String lessonId;
+    private String cId;
+    private List<String> re;
+    private courseManagement manager;
+
+    public LESSON(java.awt.Frame parent, boolean modal, courseManagement manager, String cid, String id, String title, DefaultTableModel model, int r) {//update course
         super(parent, modal);
         initComponents();
+        this.lessonId = id;
+        this.Model = model;
+        this.r = r;
+        this.cId = cid;
+        this.manager = manager;
+        nameField1.setText(title);
+        for (Lesson c : manager.getLessonsByCourse(cid)) {
+            if (c.getId().equals(id)) {
+                jTextArea2.setText(c.getContent());
+                List<String> resources = c.getResources();
+                this.re = resources;
+                for (String res : resources) {
+                    jTextArea1.append(res + "\n");
+                }
+                break;
+            }
+        }
         setLocationRelativeTo(null);
         nameField1.setText(title);
-        this.courseId = courseId;
         // make setText for other fields from database
     }
 
-    public LESSON(java.awt.Frame parent, boolean modal, String courseId) {//add course
+    public LESSON(java.awt.Frame parent, boolean modal) {//add course
         super(parent, modal);
         initComponents();
         setLocationRelativeTo(null);
-        this.courseId = courseId;
+
     }
 
     ///////////////////////////////////////////////////////////  
@@ -201,25 +225,12 @@ public class LESSON extends javax.swing.JDialog {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
-    System.out.println("Save button clicked!");
-    String title = nameField1.getText();
-    String content = jTextArea2.getText();
-    String resourcesText = jTextArea1.getText();
-    
-    System.out.println("Title: " + title);
-    System.out.println("Content: " + content);
-    
-    List<String> resources = Arrays.asList(resourcesText.split("\n"));
-    
-    Lesson newLesson = new Lesson();
-    newLesson.setTitle(title);
-    newLesson.setContent(content);
-    newLesson.setResources(resources);
-    
-    System.out.println("CourseId: " + courseId);
-    JsonDataBaseManager.addLesson(courseId, newLesson);
-    System.out.println("Lesson added to database!");
-    dispose();
+        String title = nameField1.getText();
+        String content = jTextArea2.getText();
+        Model.setValueAt(lessonId, r, 0);
+        Model.setValueAt(title, r, 1);
+        manager.editLesson(cId, lessonId, title, content, re);
+        dispose();
     }//GEN-LAST:event_saveButtonActionPerformed
 
     private void nameField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameField1ActionPerformed
