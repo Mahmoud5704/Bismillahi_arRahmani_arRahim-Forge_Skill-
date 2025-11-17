@@ -1,0 +1,102 @@
+[
+  {
+    "courseId": "CS101",
+    "title": "Introduction to Computer Science",
+    "description": "Fundamental concepts of computer science and programming",
+    "instructorId": "prof_johnson",
+    "lessons": [
+      {
+        "lessonId": "L1",
+        "title": "What is Programming?",
+        "content": "Introduction to programming concepts and algorithms...",
+        "resources": [
+          "https://example.com/slides1.pdf",
+          "https://example.com/code-examples.zip"
+        ]
+      },
+      {
+        "lessonId": "L2",
+        "title": "Variables and Data Types",
+        "content": "Learning about variables, strings, numbers, and basic data types...",
+        "resources": [
+          "https://example.com/data-types.pdf",
+          "https://example.com/exercises.docx"
+        ]
+      }
+    ],
+    "students": [
+      "student_123",
+      "student_456",
+      "student_789",
+      "08809",
+      "09096"
+    ]
+  },
+  {
+    "courseId": "MATH202",
+    "title": "Calculus II",
+    "description": "Advanced integration techniques and series",
+    "instructorId": "dr_smith",
+    "lessons": [
+      {
+        "lessonId": "CALC201",
+        "title": "Integration by Parts",
+        "content": "Learning the integration by parts formula and practice problems...",
+        "resources": [
+          "integration-worksheet.pdf",
+          "video-tutorial.mp4"
+        ]
+      },
+      {
+        "lessonId": "CALC202",
+        "title": "Trigonometric Substitution",
+        "content": "Advanced integration techniques using trig identities...",
+        "resources": []
+      }
+    ],
+    "students": [
+      "student_123",
+      "student_999",
+      "08809",
+      "09096",
+      "01185"
+    ]
+  },
+  {
+    "courseId": "ENG150",
+    "title": "Creative Writing",
+    "description": "Developing creative writing skills across various genres",
+    "instructorId": "ms_williams",
+    "lessons": [
+      {
+        "lessonId": "WRIT101",
+        "title": "Character Development",
+        "content": "Techniques for creating compelling characters...",
+        "resources": [
+          "character-worksheet.docx",
+          "reading-list.pdf"
+        ]
+      }
+    ],
+    "students": [
+      "09096",
+      "01185"
+    ]
+  },
+  {
+    "courseId": "PHY100",
+    "title": "Basic Physics",
+    "description": "Introduction to classical mechanics",
+    "instructorId": "dr_einstein",
+    "lessons": [],
+    "students": [
+      "student_456",
+      "student_777",
+      "student_888",
+      "student_999",
+      "08809",
+      "09096",
+      "01185"
+    ]
+  }
+]
