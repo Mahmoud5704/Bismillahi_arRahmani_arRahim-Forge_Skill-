@@ -13,20 +13,27 @@ import backend.Course;
 import databaseservice.TableLoader;
 import java.util.List;
 
+
 public class Manage_Courses extends javax.swing.JPanel {
 
     private JFrame frame;
     public String InstructorID;
-
-    public Manage_Courses(String instructorId) {
-        initComponents();
-        this.InstructorID = instructorId;
-        courseManagement manager = new courseManagement();
-        List<Course> coursesList = manager.getCoursesByInstructor(instructorId);
-        TableLoader.load((DefaultTableModel) courses.getModel(), coursesList);
-
-    }
-
+    private String courseId;
+public Manage_Courses(String instructorId) {
+    initComponents();
+    this.InstructorID=instructorId;
+    
+    
+    courseManagement manager = new courseManagement();
+    List<Course> coursesList = manager.getCoursesByInstructor(instructorId);
+    TableLoader.load((DefaultTableModel)courses.getModel(), coursesList);
+    
+}
+private void refreshCourseTable() {
+    courseManagement manager = new courseManagement();
+    List<Course> coursesList = manager.getCoursesByInstructor(InstructorID);
+    TableLoader.load((DefaultTableModel)courses.getModel(), coursesList);
+}
     @Override
     public void setVisible(boolean f) {
         if (f) {
@@ -38,8 +45,7 @@ public class Manage_Courses extends javax.swing.JPanel {
             frame.setVisible(true);
         }
     }
-
-    ///////////////////////////////////////////////////////////  
+       ///////////////////////////////////////////////////////////  
       // 1- MAKE DELETE BUTTON TO DELETE FROM FILE
       //2- LOAD IN TABELE FROM FILES AS NEEDED NOT ALL 
   
@@ -335,9 +341,10 @@ public class Manage_Courses extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void updateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateButtonActionPerformed
-        new COURSE(frame, true).setVisible(true);
-
-
+        new COURSE(frame,true,InstructorID).setVisible(true);
+        refreshCourseTable();
+            
+   
     }//GEN-LAST:event_updateButtonActionPerformed
 
 
@@ -346,65 +353,68 @@ public class Manage_Courses extends javax.swing.JPanel {
     }//GEN-LAST:event_coursesAncestorAdded
 
     private void coursesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_coursesMouseClicked
-        // TODO add your handling code here:
+       // TODO add your handling code here:
     }//GEN-LAST:event_coursesMouseClicked
 
     private void coursesKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_coursesKeyPressed
-
+      
     }//GEN-LAST:event_coursesKeyPressed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        new InstructorDashboard(InstructorID).setVisible(true);
-        frame.dispose();
+           new InstructorDashboard(InstructorID).setVisible(true);
+             frame.dispose();
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void updateButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateButton1ActionPerformed
-        int row = courses.getSelectedRow();
-        if (row >= 0) {
-            int confirm = JOptionPane.showConfirmDialog(this, "Are you sure?", "Confirm Delete", JOptionPane.YES_NO_OPTION);
-
-            if (confirm == JOptionPane.YES_OPTION) {
-                String courseId = courses.getValueAt(row, 0).toString();
-
-                JsonDataBaseManager.deleteCourse(courseId);
-
-                ((DefaultTableModel) courses.getModel()).removeRow(row);
-            }
+    int row = courses.getSelectedRow();
+    if (row >= 0) { 
+        int confirm = JOptionPane.showConfirmDialog(this, "Are you sure?", "Confirm Delete", JOptionPane.YES_NO_OPTION);
+        
+        if (confirm == JOptionPane.YES_OPTION) {
+            String courseId = courses.getValueAt(row, 0).toString();
+            
+            // Call static delete method directly
+            JsonDataBaseManager.deleteCourse(courseId);
+            
+            // Remove from table UI
+            ((DefaultTableModel)courses.getModel()).removeRow(row);
         }
+    }
     }//GEN-LAST:event_updateButton1ActionPerformed
 
     private void updateButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateButton2ActionPerformed
         int r = courses.getSelectedRow();
-        String courseID = courses.getValueAt(r, 0).toString();
-
-        String courseName = courses.getValueAt(r, 1).toString();
-        courseManagement manager = new courseManagement();
-        DefaultTableModel model = (DefaultTableModel) courses.getModel();
-        new COURSE(frame, true, courseName, manager, InstructorID, courseID, model, r).setVisible(true);
+    String courseName = courses.getValueAt(r, 0).toString();
+    courseManagement manager = new courseManagement();
+    new COURSE(frame, true, courseName, manager, InstructorID, courseId).setVisible(true);
     }//GEN-LAST:event_updateButton2ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        new welcome().setVisible(true);
-        frame.dispose();
+         new welcome().setVisible(true);
+         frame.dispose();
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void updateButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateButton4ActionPerformed
 
-       
-       
-        new view_enrolled_students().setVisible(true);//add conditions!
-        frame.dispose();
+      /*
+        
+        int r = courses.getSelectedRow();
+        String courseName = courses.getValueAt(r, 0).toString();
+        here backend get student from files in panel(view student)
+*/      
+       new view_enrolled_students().setVisible(true);//add conditions!
+       frame.dispose();
         // TODO add your handling code here:
     }//GEN-LAST:event_updateButton4ActionPerformed
 
     private void updateButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateButton5ActionPerformed
         int r = courses.getSelectedRow();
         String courseID = courses.getValueAt(r, 0).toString();
-
+        
         frame.dispose();
         new Managelessons(courseID, InstructorID).setVisible(true);
     }//GEN-LAST:event_updateButton5ActionPerformed
-
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JScrollPane EDIT_TABLE;
