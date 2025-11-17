@@ -2,29 +2,43 @@ package Instructor_Management;
 
 import backend.Course;
 import backend.courseManagement;
-import databaseservice.JsonDataBaseManager;
+import javax.swing.table.DefaultTableModel;
 
 public class COURSE extends javax.swing.JDialog {
+
     public String InstructorId;
     private courseManagement courseManagement;
     private String courseId;
-    public COURSE(java.awt.Frame parent, boolean modal, String title, courseManagement manager, String instructorId, String CourseId) {
-    super(parent, modal);
-    initComponents();
-    setLocationRelativeTo(null);
-    nameField1.setText(title);
-    this.courseManagement = manager;
-    this.InstructorId = instructorId;
-    this.courseId= CourseId;
-}
+    private DefaultTableModel Model;
+    private int r;
 
-    public COURSE(java.awt.Frame parent, boolean modal, String instructorId) {//add course
+    public COURSE(java.awt.Frame parent, boolean modal, String title, courseManagement manager, String instructorId, String CourseId, DefaultTableModel model, int r) {
+
+        super(parent, modal);
+        initComponents();
+        InstructorId = instructorId;
+        courseId = CourseId;
+        this.courseManagement = manager;
+        this.Model = model;
+        this.r = r;
+        setLocationRelativeTo(null);
+        for (Course c : manager.getCoursesByInstructor(instructorId)) {
+            if (c.getId().equals(courseId)) {
+                nameField1.setText(title);
+                nameField2.setText(c.getDescription());
+                
+                break;
+            }
+        }
+
+    }
+
+    public COURSE(java.awt.Frame parent, boolean modal) {//add course
         super(parent, modal);
         initComponents();
         setLocationRelativeTo(null);
-        this.InstructorId = instructorId;
     }
-    
+
     ////////////////////////////////////////////////////////////
       // 1- MAKE SAVE BUTTON TO SAVE IN FILE AND TABLE
       // 2- SET REAMINED FIELDS IN FIRST CONSTRUCTOR FROM DATABASE
@@ -202,21 +216,16 @@ public class COURSE extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
-    String title = nameField1.getText();
-    String description = nameField2.getText();
-    
-    // Create and save new course
-    Course newCourse = new Course();
-    newCourse.setTitle(title);
-    newCourse.setDescription(description);
-    newCourse.setInstructorId(InstructorId); // Hardcode or pass instructor ID
-    
-    JsonDataBaseManager.addCourse(newCourse);
-    dispose();    
+        String title = nameField1.getText();
+        String description = nameField2.getText();
+        Model.setValueAt(courseId, r, 0);
+        Model.setValueAt(title, r, 1);
+        courseManagement.editCourse(courseId, title, description);
+        dispose();
     }//GEN-LAST:event_saveButtonActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        this.dispose();      
+        this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void nameField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameField1ActionPerformed
